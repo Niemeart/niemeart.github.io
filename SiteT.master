@@ -1,0 +1,160 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SiteT.master.cs" Inherits="SiteTMaster" %>
+<%@ Register Src="~/UserControls/LanguageUserControlT.ascx" TagName="LanguageUserControl"
+    TagPrefix="uc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server" visible="True">
+    <title></title>
+    <link href="Styles/Site65.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <script src="<%=Page.ResolveUrl("~")%>Scripts/jquery-1.4.2.js" type="text/javascript"></script>
+    <script src="<%=Page.ResolveUrl("~")%>Scripts/master-scripts.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function setHourglass() {
+            document.body.style.cursor = 'wait';
+        }
+        function clearEmail(obj) {
+            if ($(obj).val() == " Käyttäjänimi") {
+                obj.value = "";
+            }
+            if ($(obj).val() == " Username") {
+                obj.value = "%";
+            }
+        }
+        function clearEmail2(obj) {
+            if ($(obj).val() == "") {
+                obj.value = " Käyttäjänimi";
+            }
+            if ($(obj).val() == "%") {
+                obj.value = " Username";
+            }
+        }
+        function clearEmail3(obj) {
+            if ($(obj).val() == " Salasana") {
+                obj.value = "";
+            }
+            if ($(obj).val() == " Password") {
+                obj.value = "%";
+            }
+        }
+        function clearEmail4(obj) {
+            if ($(obj).val() == "") {
+                obj.value = " Salasana";
+            }
+            if ($(obj).val() == "%") {
+                obj.value = " Password";
+            }
+        }
+
+        function get_cookie(cookie_name) {
+            var results = document.cookie.match('(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
+
+            if (results)
+                return (unescape(results[2]));
+            else
+                return null;
+        }
+        function CheckLanguage() {
+            if (get_cookie('CurrentLanguage') == "en-US")
+                alert('Language : US-English');
+            else
+                alert('Language : French-Francais');
+        }
+    </script>
+</head>
+
+
+
+<body onunload="doHourglass();" style="margin: 0px; width: 100%; background-color: white; height: 100%;" >
+    <div class="wrapper2" style="min-width: 800px;">
+        <form id="Form1" runat="server" onsubmit="return setHourglass();">
+
+
+
+
+            <div id="wrapper">
+                <div class="page">
+
+
+                    <%-- Yläpalkki alkaa --%>
+                    <div class="header" style="margin-bottom: 0px; height: 170px; border-bottom: 0px solid #909090; background-color: #556C79;">
+                        <div class="menursh">
+                            <ul style="margin-top: 0px; margin-bottom: 0px;">
+                                <li style="border-left-style: solid; border-left-width: 4px; border-left-color: #F6F6F6"></li>
+
+                                <li>
+                                    <asp:Image ID="Image2" runat="server" ImageUrl="~/Styles/logo10.png"
+                            BorderStyle="None" CssClass="logo10" />
+                                </li>
+								                            </ul>
+
+                               
+
+                        </div>
+                    </div>
+            <%-- Yläpalkki loppuu --%>
+
+            <%-- Login sivun content alkaa --%>
+            <div>
+                <asp:ContentPlaceHolder ID="LoginSivu" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <%-- Login sivun content loppuu --%>
+
+
+                    <%-- Kaikkien sivujen sisältö alkaa --%>
+                    <div id="main" style="height: 263px; ">
+                            <asp:ContentPlaceHolder ID="Sisalto" runat="server">
+                            </asp:ContentPlaceHolder>
+                    </div>
+                    <%-- Kaikkien sivujen sisältö loppuu --%>
+
+                    <div class="ohje" style="height: 230px; box-shadow: 0px 0px 1px 1px #D7D7D7; margin-top: 20px; margin-left: 0px; border-top: 0px solid #D7D7D7; border-right: 0px solid  #D7D7D7; border-top-right-radius: 0px;">
+                    <%-- Alareunan ohje alkaa --%>
+                    <asp:ContentPlaceHolder ID="AlareunanOhje" runat="server">                  
+                            <div id="dd3">
+                                <asp:Label ID="Label2" runat="server" Text="<%$Resources:Main, Ohje0%>"></asp:Label>
+                            </div>
+                            <div id="dd2">
+                                <asp:Label ID="Label1" runat="server" Text="<%$Resources:Main, Ohje1%>">
+                                </asp:Label>
+                             </div>
+                    </asp:ContentPlaceHolder>
+                    <%-- Alareunan ohje loppuu --%>
+                     </div>
+
+
+            <%-- Alareunan Aditro logo alkaa --%>
+            <div style="border-style: hidden; text-align: center; Margin-left: auto; Margin-right: auto;">
+                <div style="background-color: #556C79; height: 58px; width: 100%; ">
+                    <div style="padding-top: 17px; ">
+                        <a href="http://www.aditro.fi" style="color: #FF7700; font-weight: normal; font-family: Calibri; text-decoration: none; font-size: large; ">www.aditro.fi</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <uc1:LanguageUserControl runat="server" ID="Language" />
+                        </div> 
+                    </div>
+            </div>
+            <%-- Alareunan Aditro logo loppuu --%>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </form>
+    </div>
+</body>
+</html>
