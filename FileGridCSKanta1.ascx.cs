@@ -67,7 +67,7 @@ public partial class UserControls_FileGridCSKanta1 : System.Web.UI.UserControl
     private void PopulateGrid()
     {
 
-        // Get the list of files & folders in the CurrentFolder
+
         var currentDirInfo = new DirectoryInfo(GetFullyQualifiedFolderPath(this.CurrentFolder));
         var folders = currentDirInfo.GetDirectories();
 
@@ -79,7 +79,7 @@ public partial class UserControls_FileGridCSKanta1 : System.Web.UI.UserControl
         var fsItems = new List<FileSystemItemCS>(folders.Length + files.Count());
 
 
-        // Add the ".." option, if needed
+
         if (!TwoFoldersAreEquivalent(currentDirInfo.FullName, GetFullyQualifiedFolderPath(this.HomeFolder)))
         {
             var parentFolder = new FileSystemItemCS(currentDirInfo.Parent);
@@ -127,7 +127,7 @@ public partial class UserControls_FileGridCSKanta1 : System.Web.UI.UserControl
 
     private bool TwoFoldersAreEquivalent(string folderPath1, string folderPath2)
     {
-        // Chop off any trailing slashes...
+
         if (folderPath1.EndsWith("\\") || folderPath1.EndsWith("/"))
             folderPath1 = folderPath1.Substring(0, folderPath1.Length - 1);
 
