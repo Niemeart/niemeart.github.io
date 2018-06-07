@@ -24,10 +24,8 @@ public partial class DownloadKanta : System.Web.UI.Page
             if (fileName != "" && fileName.IndexOf(".") > 0)
             {
                 bool extensionAllowed = false;
-                // get file extension
                 string fileExtension = fileName.Substring(fileName.LastIndexOf('.'), fileName.Length - fileName.LastIndexOf('.'));
 
-                // check that we are allowed to download this file extension
                 string[] extensions = allowedExtensions.Split(',');
                 for (int a = 0; a < extensions.Length; a++)
                 {
@@ -40,11 +38,8 @@ public partial class DownloadKanta : System.Web.UI.Page
 
                 if (extensionAllowed == false)
                 {
-                    // check to see that the file exists 
                     if (File.Exists(Server.MapPath(filePath + '/' + fileName)))
                     {
-
-                        // for iphones and ipads, this script can cause problems - especially when trying to view videos, so we will redirect to file if on iphone/ipad
                         if (Request.UserAgent.ToLower().Contains("iphone") || Request.UserAgent.ToLower().Contains("ipad")) { Response.Redirect(filePath + '/' + fileName); }
 
                         Response.Clear();
